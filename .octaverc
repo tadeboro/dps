@@ -1,0 +1,2 @@
+# Add library and configuration folder to octave path
+addpath ("library:config")
