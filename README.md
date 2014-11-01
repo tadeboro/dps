@@ -22,7 +22,7 @@ and set proper values in structure.
 
 Using this environment is really simple:
 
-    1. `git clone --- dps`
+    1. `git clone https://github.com/tadeboro/dps.git dps`
     2. `cd dps`
     3. `octave`
     4. Do some math and make it scream from speaker;)
