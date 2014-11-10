@@ -1,3 +1,4 @@
 # Add library and configuration folder to octave path
 cdir = pwd ();
 addpath ([cdir "/library:" cdir "/config"])
+pkg load signal
