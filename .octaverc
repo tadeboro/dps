@@ -1,3 +1,6 @@
+# Sane defaults
+warning ("off", "Octave:broadcast");
+
 # Add library and configuration folder to octave path
 cdir = pwd ();
 addpath ([cdir "/library:" cdir "/config"])
