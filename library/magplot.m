@@ -1,4 +1,12 @@
-function magplot (x, fs, k = 1, l = 0, h = 1e12)
+function magplot (x, fs, t = "log", k = 1, l = 0, h = 1e12)
+  # Y-axis value function
+  if t == "log" # Decibel scale
+    yf = @ (x) 20 * log10 (x / max (x));
+    yu = "[dB]";
+  elseif t == "lin" # Linear scale
+    yf = @ (x) x / max (x);
+    yu = "[% max]";
+  end
   # Size of input
   [r c] = size (x);
   if r > c
@@ -20,19 +28,17 @@ function magplot (x, fs, k = 1, l = 0, h = 1e12)
 
   # Display first
   tmp = abs (y(lo:hi));
-  tmp = 20 * log10 (tmp / max (tmp));
-  plot (f(lo:hi), tmp)
+  plot (f(lo:hi), yf (tmp))
 
   # Calculate and display all other
   hold all
   for j = 2:r
     [y f] = freqz (x(j,:), 1, len, fs);
     tmp = abs (y(lo:hi));
-    tmp = 20 * log10 (tmp / max (tmp));
-    plot (f(lo:hi), tmp)
+    plot (f(lo:hi), yf (tmp))
   end
   hold off
   xlabel ("Frequency [Hz]");
-  ylabel ("Amplitude [dB]");
+  ylabel (["Amplitude " yu]);
   title ("Magnitude response");
 endfunction
